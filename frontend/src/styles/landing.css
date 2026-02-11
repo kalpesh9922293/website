@@ -148,8 +148,8 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
+  gap: 3rem;
+  align-items: start;
   position: relative;
   z-index: 1;
 }
@@ -200,16 +200,90 @@
   color: var(--healthcare-blue);
 }
 
-.hero-image {
+/* Hero Reviews and Trust Section */
+.hero-reviews {
   animation: fadeInRight 0.8s ease-out;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.hero-img {
-  width: 100%;
-  height: auto;
-  border-radius: 24px;
-  box-shadow: var(--shadow-xl);
-  object-fit: cover;
+.trust-badges {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: space-around;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: white;
+}
+
+.trust-icon {
+  width: 32px;
+  height: 32px;
+  opacity: 0.9;
+}
+
+.trust-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.trust-label {
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+
+.reviews-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.review-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s ease;
+}
+
+.review-card:hover {
+  transform: translateX(4px);
+}
+
+.review-content {
+  padding: 1.5rem;
+}
+
+.review-stars {
+  color: #F59E0B;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.review-text {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+  font-style: italic;
+}
+
+.review-author {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
 }
 
 /* Section Styles */
@@ -268,49 +342,69 @@
   background: white;
 }
 
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
+/* New Features Grid - Side by Side with Gradient */
+.features-grid-new {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.feature-card {
-  border: 1px solid var(--border-light);
+.feature-card-gradient {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%);
+  border: 1px solid rgba(14, 165, 233, 0.2);
   border-radius: 16px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
   cursor: pointer;
-  background: var(--bg-card);
 }
 
-.feature-card:hover {
-  transform: translateY(-4px);
+.feature-card-gradient:hover {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.15) 0%, rgba(20, 184, 166, 0.15) 100%);
+  transform: translateX(4px);
   box-shadow: var(--shadow-lg);
-  border-color: var(--healthcare-teal);
 }
 
-.feature-icon {
-  width: 64px;
-  height: 64px;
+.feature-card-inner {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: white;
   border-radius: 12px;
-  background: var(--gradient-card);
+  padding: 2rem;
+}
+
+.feature-icon-new {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #0EA5E9 0%, #14B8A6 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--healthcare-teal);
-  margin-bottom: 1rem;
+  color: white;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
 }
 
-.feature-title {
-  font-size: 1.25rem;
+.feature-content-new {
+  flex: 1;
+}
+
+.feature-title-new {
+  font-size: 1.375rem;
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
+  line-height: 1.3;
 }
 
-.feature-description {
+.feature-description-new {
   font-size: 1rem;
   line-height: 1.6;
   color: var(--text-secondary);
+  margin: 0;
 }
 
 /* How It Works Section */
@@ -367,42 +461,69 @@
   color: var(--text-secondary);
 }
 
-/* Made in India Section */
-.made-in-india-section {
-  padding: 6rem 1.5rem;
+/* India Ka Apna App Section - Flag Themed */
+.india-section {
+  padding: 4rem 1.5rem;
   background: white;
 }
 
-.india-card {
-  max-width: 800px;
+.india-banner {
+  max-width: 1000px;
   margin: 0 auto;
-  border: 2px solid var(--border-light);
-  border-radius: 16px;
-  box-shadow: var(--shadow-lg);
-  background: linear-gradient(135deg, rgba(255, 153, 51, 0.03) 0%, rgba(19, 136, 8, 0.03) 100%);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  border: 2px solid rgba(0, 0, 0, 0.1);
 }
 
-.india-content {
-  padding: 3rem;
+.india-stripe {
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.india-stripe.saffron {
+  background: linear-gradient(135deg, #FF9933 0%, #FF7700 100%);
+  min-height: 60px;
+}
+
+.india-stripe.white {
+  background: white;
+  min-height: 200px;
+  padding: 3rem 2rem;
+}
+
+.india-stripe.green {
+  background: linear-gradient(135deg, #138808 0%, #0A5E05 100%);
+  min-height: 60px;
+}
+
+.india-content-center {
   text-align: center;
+  max-width: 700px;
 }
 
-.india-flag {
-  font-size: 4rem;
-  margin-bottom: 1.5rem;
-}
-
-.india-title {
-  font-size: 2rem;
+.india-heading {
+  font-size: clamp(2rem, 4vw, 2.75rem);
   font-weight: 700;
   color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.india-subtitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #FF9933;
   margin-bottom: 1rem;
 }
 
-.india-text {
+.india-description {
   font-size: 1.125rem;
   line-height: 1.7;
   color: var(--text-secondary);
+  margin: 0;
 }
 
 /* Final CTA Section */
@@ -618,8 +739,23 @@
     gap: 2rem;
   }
   
-  .hero-image {
+  .hero-reviews {
     order: -1;
+  }
+  
+  .trust-badges {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .feature-card-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  
+  .feature-icon-new {
+    margin: 0 auto;
   }
   
   .cta-form {
@@ -652,13 +788,21 @@
     display: none;
   }
   
-  .features-grid {
-    grid-template-columns: 1fr;
+  .features-grid-new {
+    padding: 0 0.5rem;
+  }
+  
+  .feature-card-inner {
+    padding: 1.5rem;
   }
   
   .steps-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
+  }
+  
+  .india-stripe.white {
+    padding: 2rem 1rem;
   }
 }
 

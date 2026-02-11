@@ -108,16 +108,57 @@ const LandingPage = () => {
               onClick={scrollToGetStarted}
               size="lg"
               className="btn-hero-cta">
-
               Get Started
             </Button>
           </div>
-          <div className="hero-image">
-            <img
-              src="https://images.unsplash.com/photo-1663661759357-5ab792c79dd1"
-              alt="Health App on Mobile"
-              className="hero-img" />
-
+          
+          {/* Reviews and Trust Section */}
+          <div className="hero-reviews">
+            <div className="trust-badges">
+              <div className="trust-item">
+                <Shield className="trust-icon" />
+                <div>
+                  <div className="trust-number">100%</div>
+                  <div className="trust-label">Secure</div>
+                </div>
+              </div>
+              <div className="trust-item">
+                <Heart className="trust-icon" />
+                <div>
+                  <div className="trust-number">10K+</div>
+                  <div className="trust-label">Happy Users</div>
+                </div>
+              </div>
+              <div className="trust-item">
+                <CheckCircle2 className="trust-icon" />
+                <div>
+                  <div className="trust-number">4.8★</div>
+                  <div className="trust-label">Rating</div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="reviews-container">
+              <Card className="review-card">
+                <CardContent className="review-content">
+                  <div className="review-stars">★★★★★</div>
+                  <p className="review-text">
+                    "Health Grow has made managing my medications so easy! Never miss a dose anymore."
+                  </p>
+                  <p className="review-author">- Priya Sharma, Mumbai</p>
+                </CardContent>
+              </Card>
+              
+              <Card className="review-card">
+                <CardContent className="review-content">
+                  <div className="review-stars">★★★★★</div>
+                  <p className="review-text">
+                    "The AI report analysis feature is amazing. Finally understand my health reports!"
+                  </p>
+                  <p className="review-author">- Rajesh Kumar, Delhi</p>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
@@ -191,19 +232,25 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Made in India Section */}
-      <section className="made-in-india-section">
+      {/* India Ka Apna App Section */}
+      <section className="india-section">
         <div className="container">
-          <Card className="india-card">
-            <CardContent className="india-content">
-              <div className="india-flag">🇮🇳</div>
-              <h2 className="india-title">Made in India, Made for You</h2>
-              <p className="india-text">
-                Health Grow is proudly built in India with a vision to make healthcare smarter 
-                and more accessible for everyone.
-              </p>
-            </CardContent>
-          </Card>
+          <div className="india-banner">
+            <div className="india-stripe saffron"></div>
+            <div className="india-stripe white">
+              <div className="india-content-center">
+                <h2 className="india-heading">🇮🇳 India Ka Apna App 🇮🇳</h2>
+                <p className="india-subtitle">
+                  Proudly Made in India for Indians
+                </p>
+                <p className="india-description">
+                  Designed with Indian families in mind • Supporting multiple languages • 
+                  Trusted by thousands across India
+                </p>
+              </div>
+            </div>
+            <div className="india-stripe green"></div>
+          </div>
         </div>
       </section>
 
