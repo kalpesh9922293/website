@@ -193,22 +193,20 @@ const LandingPage = () => {
               Everything you need to manage your health effectively
             </p>
           </div>
-          <div className="features-grid">
-            {features.map((feature, index) =>
-            <Card key={index} className="feature-card">
-                <CardHeader>
-                  <div className="feature-icon">
-                    <feature.icon size={32} />
+          <div className="features-grid-new">
+            {features.map((feature, index) => (
+              <div key={index} className="feature-card-gradient">
+                <div className="feature-card-inner">
+                  <div className="feature-icon-new">
+                    <feature.icon size={40} />
                   </div>
-                  <CardTitle className="feature-title">{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="feature-description">
-                    {feature.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
-            )}
+                  <div className="feature-content-new">
+                    <h3 className="feature-title-new">{feature.title}</h3>
+                    <p className="feature-description-new">{feature.description}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
