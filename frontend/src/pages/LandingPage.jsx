@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import {
@@ -9,15 +9,32 @@ import {
   Bot,
   LayoutDashboard,
   Heart,
-  CheckCircle2 } from
+  CheckCircle2,
+  Users,
+  Zap,
+  Globe } from
 'lucide-react';
 import '../styles/landing.css';
 
 const LandingPage = () => {
+  const [email, setEmail] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+
   const scrollToGetStarted = () => {
     document.getElementById('get-started-form')?.scrollIntoView({
       behavior: 'smooth'
     });
+  };
+
+  const handleEmailSubmit = (e) => {
+    e.preventDefault();
+    if (email.trim()) {
+      setSubmitted(true);
+      setEmail('');
+      setTimeout(() => {
+        setSubmitted(false);
+      }, 5000);
+    }
   };
 
   const features = [
@@ -99,7 +116,7 @@ const LandingPage = () => {
         <div className="hero-content">
           <div className="hero-text">
             <h1 className="hero-title">Your Smart Health Companion</h1>
-            <p className="hero-subtitle">India ka apna smart healthcare management platform 🇮🇳</p>
+            <p className="hero-subtitle">India ka apna smart healthcare management platform</p>
             <p className="hero-description">
               Manage medicines, upload reports, get AI-powered health insights, and stay in control 
               of your health — all in one place.
@@ -112,52 +129,36 @@ const LandingPage = () => {
             </Button>
           </div>
           
-          {/* Reviews and Trust Section */}
-          <div className="hero-reviews">
-            <div className="trust-badges">
-              <div className="trust-item">
-                <Shield className="trust-icon" />
-                <div>
-                  <div className="trust-number">100%</div>
-                  <div className="trust-label">Secure</div>
-                </div>
+          {/* Floating Cards - Right Side */}
+          <div className="hero-floating-cards">
+            <div className="floating-card card-1">
+              <div className="floating-card-icon">
+                <Pill size={32} />
               </div>
-              <div className="trust-item">
-                <Heart className="trust-icon" />
-                <div>
-                  <div className="trust-number">10K+</div>
-                  <div className="trust-label">Happy Users</div>
-                </div>
-              </div>
-              <div className="trust-item">
-                <CheckCircle2 className="trust-icon" />
-                <div>
-                  <div className="trust-number">4.8★</div>
-                  <div className="trust-label">Rating</div>
-                </div>
+              <div className="floating-card-content">
+                <div className="floating-card-number">10K+</div>
+                <div className="floating-card-label">Doses Tracked</div>
               </div>
             </div>
             
-            <div className="reviews-container">
-              <Card className="review-card">
-                <CardContent className="review-content">
-                  <div className="review-stars">★★★★★</div>
-                  <p className="review-text">
-                    "Health Grow has made managing my medications so easy! Never miss a dose anymore."
-                  </p>
-                  <p className="review-author">- Priya Sharma, Mumbai</p>
-                </CardContent>
-              </Card>
-              
-              <Card className="review-card">
-                <CardContent className="review-content">
-                  <div className="review-stars">★★★★★</div>
-                  <p className="review-text">
-                    "The AI report analysis feature is amazing. Finally understand my health reports!"
-                  </p>
-                  <p className="review-author">- Rajesh Kumar, Delhi</p>
-                </CardContent>
-              </Card>
+            <div className="floating-card card-2">
+              <div className="floating-card-icon">
+                <FileText size={32} />
+              </div>
+              <div className="floating-card-content">
+                <div className="floating-card-number">50K+</div>
+                <div className="floating-card-label">Reports Analyzed</div>
+              </div>
+            </div>
+            
+            <div className="floating-card card-3">
+              <div className="floating-card-icon">
+                <Heart size={32} />
+              </div>
+              <div className="floating-card-content">
+                <div className="floating-card-number">100%</div>
+                <div className="floating-card-label">Health Privacy</div>
+              </div>
             </div>
           </div>
         </div>
@@ -166,21 +167,57 @@ const LandingPage = () => {
       {/* About Section */}
       <section id="about" className="about-section">
         <div className="container">
-          <div className="section-header">
-            <h2 className="section-title">About Health Grow</h2>
+          <div className="about-hero">
+            <div className="about-hero-content">
+              <h2 className="about-hero-title">Your Health, Our Mission</h2>
+              <p className="about-hero-description">
+                Health Grow empowers millions of Indians to take control of their health journey. 
+                We simplify the complex, making healthcare management intuitive, accessible, and personal.
+              </p>
+              <div className="about-stats-row">
+                <div className="stat-item">
+                  <div className="stat-value">50K+</div>
+                  <div className="stat-text">Active Users</div>
+                </div>
+                <div className="stat-divider"></div>
+                <div className="stat-item">
+                  <div className="stat-value">1M+</div>
+                  <div className="stat-text">Goals Achieved</div>
+                </div>
+                <div className="stat-divider"></div>
+                <div className="stat-item">
+                  <div className="stat-value">99.9%</div>
+                  <div className="stat-text">Reliability</div>
+                </div>
+              </div>
+            </div>
           </div>
-          <Card className="about-card">
-            <CardContent className="about-content">
-              <p className="about-text">
-                Health Grow is a modern health management platform designed to simplify your daily 
-                healthcare routine. We believe that health should be easy to manage, understand, and track.
-              </p>
-              <p className="about-text">
-                With smart reminders and AI-based insights, Health Grow helps individuals and families 
-                take better care of their health.
-              </p>
-            </CardContent>
-          </Card>
+          
+          <div className="about-features">
+            <div className="about-feature-card">
+              <div className="feature-icon-bg">
+                <Heart size={40} />
+              </div>
+              <h3 className="feature-title">Built with Care</h3>
+              <p className="feature-text">Every feature is designed around your needs. We listen, learn, and continuously improve to serve you better.</p>
+            </div>
+            
+            <div className="about-feature-card">
+              <div className="feature-icon-bg">
+                <Shield size={40} />
+              </div>
+              <h3 className="feature-title">Privacy First</h3>
+              <p className="feature-text">Your health data is sacred. With enterprise-grade encryption, your information stays completely private and secure.</p>
+            </div>
+            
+            <div className="about-feature-card">
+              <div className="feature-icon-bg">
+                <Zap size={40} />
+              </div>
+              <h3 className="feature-title">AI-Powered</h3>
+              <p className="feature-text">Advanced AI analyzes your health patterns and provides personalized insights you can actually understand.</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -233,21 +270,46 @@ const LandingPage = () => {
       {/* India Ka Apna App Section */}
       <section className="india-section">
         <div className="container">
-          <div className="india-banner">
-            <div className="india-stripe saffron"></div>
-            <div className="india-stripe white">
-              <div className="india-content-center">
-                <h2 className="india-heading">🇮🇳 India Ka Apna App 🇮🇳</h2>
-                <p className="india-subtitle">
-                  Proudly Made in India for Indians
-                </p>
-                <p className="india-description">
-                  Designed with Indian families in mind • Supporting multiple languages • 
-                  Trusted by thousands across India
-                </p>
+          <div className="india-content">
+            <div className="india-top">
+              <h2 className="india-title">Proudly Made in India</h2>
+              <p className="india-tagline">For Indians, By Indians</p>
+            </div>
+            
+            <div className="india-cards-grid">
+              <div className="india-card">
+                <div className="india-card-stripe saffron"></div>
+                <div className="india-card-content">
+                  <div className="india-card-icon">
+                    <Users size={32} />
+                  </div>
+                  <h3 className="india-card-title">Deep Local Roots</h3>
+                  <p className="india-card-text">Built with deep understanding of Indian families, culture, and healthcare needs</p>
+                </div>
+              </div>
+              
+              <div className="india-card">
+                <div className="india-card-stripe white"></div>
+                <div className="india-card-content">
+                  <div className="india-card-icon">
+                    <Globe size={32} />
+                  </div>
+                  <h3 className="india-card-title">Multi-Language Support</h3>
+                  <p className="india-card-text">Available in Hindi, Tamil, Telugu, Bengali, Kannada, and many more languages</p>
+                </div>
+              </div>
+              
+              <div className="india-card">
+                <div className="india-card-stripe green"></div>
+                <div className="india-card-content">
+                  <div className="india-card-icon">
+                    <CheckCircle2 size={32} />
+                  </div>
+                  <h3 className="india-card-title">Trusted by Thousands</h3>
+                  <p className="india-card-text">Serving millions of Indians across the country with reliable health management</p>
+                </div>
               </div>
             </div>
-            <div className="india-stripe green"></div>
           </div>
         </div>
       </section>
@@ -256,35 +318,51 @@ const LandingPage = () => {
       <section id="get-started-form" className="final-cta-section">
         <div className="container">
           <div className="cta-content">
-            <Heart className="cta-icon" size={48} />
-            <h2 className="cta-title">Start Your Healthy Journey Today</h2>
-            <p className="cta-subtitle">
-              Join thousands of users managing their health better with Health Grow
-            </p>
-            <div className="cta-form">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="cta-input" />
+            {submitted ? (
+              <div className="success-message">
+                <CheckCircle2 size={64} className="success-icon" />
+                <h2 className="success-title">Thanks for Registering!</h2>
+                <p className="success-text">
+                  Welcome to Health Grow! Check your email for next steps. 
+                  Get ready to take control of your health.
+                </p>
+              </div>
+            ) : (
+              <>
+                <Heart className="cta-icon" size={48} />
+                <h2 className="cta-title">Start Your Healthy Journey Today</h2>
+                <p className="cta-subtitle">
+                  Join thousands of users managing their health better with Health Grow
+                </p>
+                <form onSubmit={handleEmailSubmit} className="cta-form">
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    className="cta-input"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required />
 
-              <Button size="lg" className="btn-cta-submit">
-                Get Started
-              </Button>
-            </div>
-            <div className="cta-benefits">
-              <div className="benefit-item">
-                <CheckCircle2 size={20} />
-                <span>Free to start</span>
-              </div>
-              <div className="benefit-item">
-                <CheckCircle2 size={20} />
-                <span>No credit card required</span>
-              </div>
-              <div className="benefit-item">
-                <CheckCircle2 size={20} />
-                <span>Secure & private</span>
-              </div>
-            </div>
+                  <Button type="submit" size="lg" className="btn-cta-submit">
+                    Get Started
+                  </Button>
+                </form>
+                <div className="cta-benefits">
+                  <div className="benefit-item">
+                    <CheckCircle2 size={20} />
+                    <span>Free to start</span>
+                  </div>
+                  <div className="benefit-item">
+                    <CheckCircle2 size={20} />
+                    <span>No credit card required</span>
+                  </div>
+                  <div className="benefit-item">
+                    <CheckCircle2 size={20} />
+                    <span>Secure & private</span>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </section>
