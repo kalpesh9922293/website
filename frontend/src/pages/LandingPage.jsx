@@ -114,8 +114,8 @@ const LandingPage = () => {
           </div>
           <div className="hero-image">
             <img
-              src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d"
-              alt="Healthcare Professional"
+              src="https://images.unsplash.com/photo-1663661759357-5ab792c79dd1"
+              alt="Health App on Mobile"
               className="hero-img" />
 
           </div>
