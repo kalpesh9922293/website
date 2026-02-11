@@ -1,75 +1,75 @@
 import React from 'react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import { 
-  Pill, 
-  FileText, 
-  Shield, 
-  Bell, 
-  Bot, 
+import {
+  Pill,
+  FileText,
+  Shield,
+  Bell,
+  Bot,
   LayoutDashboard,
   Heart,
-  CheckCircle2
-} from 'lucide-react';
+  CheckCircle2 } from
+'lucide-react';
 import '../styles/landing.css';
 
 const LandingPage = () => {
   const scrollToGetStarted = () => {
-    document.getElementById('get-started-form')?.scrollIntoView({ 
-      behavior: 'smooth' 
+    document.getElementById('get-started-form')?.scrollIntoView({
+      behavior: 'smooth'
     });
   };
 
   const features = [
-    {
-      icon: Pill,
-      title: "Smart Medicine Reminders",
-      description: "Set custom reminder times, daily repeating reminders, sound alerts. Never miss a dose."
-    },
-    {
-      icon: FileText,
-      title: "AI Health Report Analysis",
-      description: "Upload medical reports. AI explains reports in simple language. Understand your health better."
-    },
-    {
-      icon: Shield,
-      title: "Secure Health Records",
-      description: "Store medical data safely with private and secure cloud storage."
-    },
-    {
-      icon: Bell,
-      title: "Smart Notifications",
-      description: "Health alerts and reminder tracking to keep you on top of your health."
-    },
-    {
-      icon: Bot,
-      title: "AI Health Assistant",
-      description: "Ask health-related questions and get instant AI responses."
-    },
-    {
-      icon: LayoutDashboard,
-      title: "Personal Dashboard",
-      description: "View upcoming medicines, track past reminders. Simple & clean interface."
-    }
-  ];
+  {
+    icon: Pill,
+    title: "Smart Medicine Reminders",
+    description: "Set custom reminder times, daily repeating reminders, sound alerts. Never miss a dose."
+  },
+  {
+    icon: FileText,
+    title: "AI Health Report Analysis",
+    description: "Upload medical reports. AI explains reports in simple language. Understand your health better."
+  },
+  {
+    icon: Shield,
+    title: "Secure Health Records",
+    description: "Store medical data safely with private and secure cloud storage."
+  },
+  {
+    icon: Bell,
+    title: "Smart Notifications",
+    description: "Health alerts and reminder tracking to keep you on top of your health."
+  },
+  {
+    icon: Bot,
+    title: "AI Health Assistant",
+    description: "Ask health-related questions and get instant AI responses."
+  },
+  {
+    icon: LayoutDashboard,
+    title: "Personal Dashboard",
+    description: "View upcoming medicines, track past reminders. Simple & clean interface."
+  }];
+
 
   const howItWorks = [
-    {
-      step: "1",
-      title: "Create your account",
-      description: "Sign up in seconds and set up your health profile"
-    },
-    {
-      step: "2",
-      title: "Add medicines or upload reports",
-      description: "Add your medications or upload health reports for analysis"
-    },
-    {
-      step: "3",
-      title: "Get reminders & AI health insights",
-      description: "Receive timely reminders and personalized health insights"
-    }
-  ];
+  {
+    step: "1",
+    title: "Create your account",
+    description: "Sign up in seconds and set up your health profile"
+  },
+  {
+    step: "2",
+    title: "Add medicines or upload reports",
+    description: "Add your medications or upload health reports for analysis"
+  },
+  {
+    step: "3",
+    title: "Get reminders & AI health insights",
+    description: "Receive timely reminders and personalized health insights"
+  }];
+
 
   return (
     <div className="landing-page">
@@ -77,11 +77,11 @@ const LandingPage = () => {
       <nav className="nav-header">
         <div className="nav-content">
           <div className="nav-logo">
-            <img 
-              src="https://customer-assets.emergentagent.com/job_2c1c840e-32d3-4110-aaeb-07e24a174e8c/artifacts/85ig0cms_file_00000000af3c71fa9076405840c2996a.png" 
-              alt="Health Grow Logo" 
-              className="logo-image"
-            />
+            <img
+              src="https://customer-assets.emergentagent.com/job_2c1c840e-32d3-4110-aaeb-07e24a174e8c/artifacts/85ig0cms_file_00000000af3c71fa9076405840c2996a.png"
+              alt="Health Grow Logo"
+              className="logo-image !rounded-[50px]" />
+
           </div>
           <div className="nav-links">
             <a href="#about" className="nav-link">About</a>
@@ -104,20 +104,20 @@ const LandingPage = () => {
               Manage medicines, upload reports, get AI-powered health insights, and stay in control 
               of your health — all in one place.
             </p>
-            <Button 
-              onClick={scrollToGetStarted} 
-              size="lg" 
-              className="btn-hero-cta"
-            >
+            <Button
+              onClick={scrollToGetStarted}
+              size="lg"
+              className="btn-hero-cta">
+
               Get Started
             </Button>
           </div>
           <div className="hero-image">
-            <img 
-              src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d" 
+            <img
+              src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d"
               alt="Healthcare Professional"
-              className="hero-img"
-            />
+              className="hero-img" />
+
           </div>
         </div>
       </section>
@@ -153,8 +153,8 @@ const LandingPage = () => {
             </p>
           </div>
           <div className="features-grid">
-            {features.map((feature, index) => (
-              <Card key={index} className="feature-card">
+            {features.map((feature, index) =>
+            <Card key={index} className="feature-card">
                 <CardHeader>
                   <div className="feature-icon">
                     <feature.icon size={32} />
@@ -167,7 +167,7 @@ const LandingPage = () => {
                   </CardDescription>
                 </CardContent>
               </Card>
-            ))}
+            )}
           </div>
         </div>
       </section>
@@ -180,13 +180,13 @@ const LandingPage = () => {
             <p className="section-subtitle">Simple. Clean. Easy.</p>
           </div>
           <div className="steps-grid">
-            {howItWorks.map((item, index) => (
-              <div key={index} className="step-card">
+            {howItWorks.map((item, index) =>
+            <div key={index} className="step-card">
                 <div className="step-number">{item.step}</div>
                 <h3 className="step-title">{item.title}</h3>
                 <p className="step-description">{item.description}</p>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </section>
@@ -217,11 +217,11 @@ const LandingPage = () => {
               Join thousands of users managing their health better with Health Grow
             </p>
             <div className="cta-form">
-              <input 
-                type="email" 
-                placeholder="Enter your email" 
-                className="cta-input"
-              />
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="cta-input" />
+
               <Button size="lg" className="btn-cta-submit">
                 Get Started
               </Button>
@@ -249,11 +249,11 @@ const LandingPage = () => {
         <div className="container">
           <div className="footer-content">
             <div className="footer-brand">
-              <img 
-                src="https://customer-assets.emergentagent.com/job_2c1c840e-32d3-4110-aaeb-07e24a174e8c/artifacts/85ig0cms_file_00000000af3c71fa9076405840c2996a.png" 
-                alt="Health Grow Logo" 
-                className="footer-logo"
-              />
+              <img
+                src="https://customer-assets.emergentagent.com/job_2c1c840e-32d3-4110-aaeb-07e24a174e8c/artifacts/85ig0cms_file_00000000af3c71fa9076405840c2996a.png"
+                alt="Health Grow Logo"
+                className="footer-logo" />
+
               <p className="footer-tagline">Health is the biggest wealth</p>
             </div>
             <div className="footer-links">
@@ -270,8 +270,8 @@ const LandingPage = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>);
+
 };
 
 export default LandingPage;
