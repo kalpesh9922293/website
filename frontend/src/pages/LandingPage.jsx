@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import {
@@ -12,13 +12,43 @@ import {
   CheckCircle2,
   Users,
   Zap,
-  Globe } from
-'lucide-react';
+  Globe
+} from
+  'lucide-react';
+import logo from '../assets/logo.png';
 import '../styles/landing.css';
 
 const LandingPage = () => {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
+
+  useEffect(() => {
+    const targetDate = new Date('March 2, 2026 00:00:00').getTime();
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000)
+        });
+      } else {
+        clearInterval(interval);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const scrollToGetStarted = () => {
     document.getElementById('get-started-form')?.scrollIntoView({
@@ -38,54 +68,54 @@ const LandingPage = () => {
   };
 
   const features = [
-  {
-    icon: Pill,
-    title: "Smart Medicine Reminders",
-    description: "Set custom reminder times, daily repeating reminders, sound alerts. Never miss a dose."
-  },
-  {
-    icon: FileText,
-    title: "AI Health Report Analysis",
-    description: "Upload medical reports. AI explains reports in simple language. Understand your health better."
-  },
-  {
-    icon: Shield,
-    title: "Secure Health Records",
-    description: "Store medical data safely with private and secure cloud storage."
-  },
-  {
-    icon: Bell,
-    title: "Smart Notifications",
-    description: "Health alerts and reminder tracking to keep you on top of your health."
-  },
-  {
-    icon: Bot,
-    title: "AI Health Assistant",
-    description: "Ask health-related questions and get instant AI responses."
-  },
-  {
-    icon: LayoutDashboard,
-    title: "Personal Dashboard",
-    description: "View upcoming medicines, track past reminders. Simple & clean interface."
-  }];
+    {
+      icon: Pill,
+      title: "Smart Medicine Reminders",
+      description: "Set custom reminder times, daily repeating reminders, sound alerts. Never miss a dose."
+    },
+    {
+      icon: FileText,
+      title: "AI Health Report Analysis",
+      description: "Upload medical reports. AI explains reports in simple language. Understand your health better."
+    },
+    {
+      icon: Shield,
+      title: "Secure Health Records",
+      description: "Store medical data safely with private and secure cloud storage."
+    },
+    {
+      icon: Bell,
+      title: "Smart Notifications",
+      description: "Health alerts and reminder tracking to keep you on top of your health."
+    },
+    {
+      icon: Bot,
+      title: "AI Health Assistant",
+      description: "Ask health-related questions and get instant AI responses."
+    },
+    {
+      icon: LayoutDashboard,
+      title: "Personal Dashboard",
+      description: "View upcoming medicines, track past reminders. Simple & clean interface."
+    }];
 
 
   const howItWorks = [
-  {
-    step: "1",
-    title: "Create your account",
-    description: "Sign up in seconds and set up your health profile"
-  },
-  {
-    step: "2",
-    title: "Add medicines or upload reports",
-    description: "Add your medications or upload health reports for analysis"
-  },
-  {
-    step: "3",
-    title: "Get reminders & AI health insights",
-    description: "Receive timely reminders and personalized health insights"
-  }];
+    {
+      step: "1",
+      title: "Create your account",
+      description: "Sign up in seconds and set up your health profile"
+    },
+    {
+      step: "2",
+      title: "Add medicines or upload reports",
+      description: "Add your medications or upload health reports for analysis"
+    },
+    {
+      step: "3",
+      title: "Get reminders & AI health insights",
+      description: "Receive timely reminders and personalized health insights"
+    }];
 
 
   return (
@@ -95,7 +125,7 @@ const LandingPage = () => {
         <div className="nav-content">
           <div className="nav-logo">
             <img
-              src="https://customer-assets.emergentagent.com/job_2c1c840e-32d3-4110-aaeb-07e24a174e8c/artifacts/85ig0cms_file_00000000af3c71fa9076405840c2996a.png"
+              src={logo}
               alt="Health Grow Logo"
               className="logo-image !rounded-[50px]" />
 
@@ -111,88 +141,85 @@ const LandingPage = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="hero-section">
-        <div className="hero-content">
-          <div className="hero-text">
+      <section className="hero-section center-content">
+        <div className="hero-content-center">
+          <div className="hero-text-center">
             <h1 className="hero-title">Your Smart Health Companion</h1>
             <p className="hero-subtitle">India ka apna smart healthcare management platform</p>
             <p className="hero-description">
-              Manage medicines, upload reports, get AI-powered health insights, and stay in control 
+              Manage medicines, upload reports, get AI-powered health insights, and stay in control
               of your health — all in one place.
             </p>
-            <Button
-              onClick={scrollToGetStarted}
-              size="lg"
-              className="btn-hero-cta">
-              Get Started
-            </Button>
-          </div>
-          
-          {/* Floating Cards - Right Side */}
-          <div className="hero-floating-cards">
-            <div className="floating-card card-1">
-              <div className="floating-card-icon">
-                <Pill size={32} />
-              </div>
-              <div className="floating-card-content">
-                <div className="floating-card-number">10K+</div>
-                <div className="floating-card-label">Doses Tracked</div>
-              </div>
+            <div className="hero-cta-wrapper">
+              <Button
+                onClick={scrollToGetStarted}
+                size="lg"
+                className="btn-hero-cta">
+                Get Started
+              </Button>
             </div>
-            
-            <div className="floating-card card-2">
-              <div className="floating-card-icon">
-                <FileText size={32} />
-              </div>
-              <div className="floating-card-content">
-                <div className="floating-card-number">50K+</div>
-                <div className="floating-card-label">Reports Analyzed</div>
-              </div>
-            </div>
-            
-            <div className="floating-card card-3">
-              <div className="floating-card-icon">
-                <Heart size={32} />
-              </div>
-              <div className="floating-card-content">
-                <div className="floating-card-number">100%</div>
-                <div className="floating-card-label">Health Privacy</div>
+
+            <div className="launch-section">
+              <h3 className="launch-text">We are launching on</h3>
+              <div className="countdown-timer-large">
+                <div className="timer-block-large">
+                  <span className="timer-value-large">{String(timeLeft.days).padStart(2, '0')}</span>
+                  <span className="timer-label-large">Days</span>
+                </div>
+                <div className="timer-separator-large">:</div>
+                <div className="timer-block-large">
+                  <span className="timer-value-large">{String(timeLeft.hours).padStart(2, '0')}</span>
+                  <span className="timer-label-large">Hrs</span>
+                </div>
+                <div className="timer-separator-large">:</div>
+                <div className="timer-block-large">
+                  <span className="timer-value-large">{String(timeLeft.minutes).padStart(2, '0')}</span>
+                  <span className="timer-label-large">Mins</span>
+                </div>
+                <div className="timer-separator-large">:</div>
+                <div className="timer-block-large">
+                  <span className="timer-value-large">{String(timeLeft.seconds).padStart(2, '0')}</span>
+                  <span className="timer-label-large">Secs</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
+
+
       {/* About Section */}
-      <section id="about" className="about-section">
+      < section id="about" className="about-section" >
         <div className="container">
           <div className="about-hero">
             <div className="about-hero-content">
               <h2 className="about-hero-title">Your Health, Our Mission</h2>
               <p className="about-hero-description">
-                Health Grow empowers millions of Indians to take control of their health journey. 
+                Health Grow empowers millions of Indians to take control of their health journey.
                 We simplify the complex, making healthcare management intuitive, accessible, and personal.
               </p>
-              <div className="about-stats-row">
-                <div className="stat-item">
-                  <div className="stat-value">50K+</div>
-                  <div className="stat-text">Active Users</div>
+              <div className="highlights-strip">
+                <div className="highlight-item">
+                  <Pill size={24} className="highlight-icon" />
+                  <span className="highlight-label">Medicine Reminders</span>
                 </div>
-                <div className="stat-divider"></div>
-                <div className="stat-item">
-                  <div className="stat-value">1M+</div>
-                  <div className="stat-text">Goals Achieved</div>
+                <div className="highlight-item">
+                  <FileText size={24} className="highlight-icon" />
+                  <span className="highlight-label">AI Report Analysis</span>
                 </div>
-                <div className="stat-divider"></div>
-                <div className="stat-item">
-                  <div className="stat-value">99.9%</div>
-                  <div className="stat-text">Reliability</div>
+                <div className="highlight-item">
+                  <Shield size={24} className="highlight-icon" />
+                  <span className="highlight-label">100% Private & Secure</span>
+                </div>
+                <div className="highlight-item">
+                  <Bot size={24} className="highlight-icon" />
+                  <span className="highlight-label">AI Health Assistant</span>
                 </div>
               </div>
             </div>
           </div>
-          
+
           <div className="about-features">
             <div className="about-feature-card">
               <div className="feature-icon-bg">
@@ -201,7 +228,7 @@ const LandingPage = () => {
               <h3 className="feature-title">Built with Care</h3>
               <p className="feature-text">Every feature is designed around your needs. We listen, learn, and continuously improve to serve you better.</p>
             </div>
-            
+
             <div className="about-feature-card">
               <div className="feature-icon-bg">
                 <Shield size={40} />
@@ -209,7 +236,7 @@ const LandingPage = () => {
               <h3 className="feature-title">Privacy First</h3>
               <p className="feature-text">Your health data is sacred. With enterprise-grade encryption, your information stays completely private and secure.</p>
             </div>
-            
+
             <div className="about-feature-card">
               <div className="feature-icon-bg">
                 <Zap size={40} />
@@ -219,7 +246,7 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Features Section */}
       <section id="features" className="features-section">
@@ -230,26 +257,28 @@ const LandingPage = () => {
               Everything you need to manage your health effectively
             </p>
           </div>
-          <div className="features-grid-new">
-            {features.map((feature, index) => (
-              <div key={index} className="feature-card-gradient">
-                <div className="feature-card-inner">
-                  <div className="feature-icon-new">
-                    <feature.icon size={40} />
-                  </div>
-                  <div className="feature-content-new">
-                    <h3 className="feature-title-new">{feature.title}</h3>
-                    <p className="feature-description-new">{feature.description}</p>
+          <div className="features-carousel-container">
+            <div className="features-grid-carousel">
+              {features.map((feature, index) => (
+                <div key={index} className="feature-card-carousel">
+                  <div className="feature-card-inner-carousel">
+                    <div className="feature-icon-carousel">
+                      <feature.icon size={32} />
+                    </div>
+                    <div className="feature-content-carousel">
+                      <h3 className="feature-title-carousel">{feature.title}</h3>
+                      <p className="feature-description-carousel">{feature.description}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="how-it-works-section">
+      < section id="how-it-works" className="how-it-works-section" >
         <div className="container">
           <div className="section-header">
             <h2 className="section-title">How It Works</h2>
@@ -257,7 +286,7 @@ const LandingPage = () => {
           </div>
           <div className="steps-grid">
             {howItWorks.map((item, index) =>
-            <div key={index} className="step-card">
+              <div key={index} className="step-card">
                 <div className="step-number">{item.step}</div>
                 <h3 className="step-title">{item.title}</h3>
                 <p className="step-description">{item.description}</p>
@@ -265,7 +294,7 @@ const LandingPage = () => {
             )}
           </div>
         </div>
-      </section>
+      </section >
 
       {/* India Ka Apna App Section */}
       <section className="india-section">
@@ -275,47 +304,12 @@ const LandingPage = () => {
               <h2 className="india-title">Proudly Made in India</h2>
               <p className="india-tagline">For Indians, By Indians</p>
             </div>
-            
-            <div className="india-cards-grid">
-              <div className="india-card">
-                <div className="india-card-stripe saffron"></div>
-                <div className="india-card-content">
-                  <div className="india-card-icon">
-                    <Users size={32} />
-                  </div>
-                  <h3 className="india-card-title">Deep Local Roots</h3>
-                  <p className="india-card-text">Built with deep understanding of Indian families, culture, and healthcare needs</p>
-                </div>
-              </div>
-              
-              <div className="india-card">
-                <div className="india-card-stripe white"></div>
-                <div className="india-card-content">
-                  <div className="india-card-icon">
-                    <Globe size={32} />
-                  </div>
-                  <h3 className="india-card-title">Multi-Language Support</h3>
-                  <p className="india-card-text">Available in Hindi, Tamil, Telugu, Bengali, Kannada, and many more languages</p>
-                </div>
-              </div>
-              
-              <div className="india-card">
-                <div className="india-card-stripe green"></div>
-                <div className="india-card-content">
-                  <div className="india-card-icon">
-                    <CheckCircle2 size={32} />
-                  </div>
-                  <h3 className="india-card-title">Trusted by Thousands</h3>
-                  <p className="india-card-text">Serving millions of Indians across the country with reliable health management</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
       {/* Final CTA Section */}
-      <section id="get-started-form" className="final-cta-section">
+      < section id="get-started-form" className="final-cta-section" >
         <div className="container">
           <div className="cta-content">
             {submitted ? (
@@ -323,7 +317,7 @@ const LandingPage = () => {
                 <CheckCircle2 size={64} className="success-icon" />
                 <h2 className="success-title">Thanks for Registering!</h2>
                 <p className="success-text">
-                  Welcome to Health Grow! Check your email for next steps. 
+                  Welcome to Health Grow! Check your email for next steps.
                   Get ready to take control of your health.
                 </p>
               </div>
@@ -365,15 +359,15 @@ const LandingPage = () => {
             )}
           </div>
         </div>
-      </section>
+      </section >
 
       {/* Footer */}
-      <footer className="footer">
+      < footer className="footer" >
         <div className="container">
           <div className="footer-content">
             <div className="footer-brand">
               <img
-                src="https://customer-assets.emergentagent.com/job_2c1c840e-32d3-4110-aaeb-07e24a174e8c/artifacts/85ig0cms_file_00000000af3c71fa9076405840c2996a.png"
+                src={logo}
                 alt="Health Grow Logo"
                 className="footer-logo" />
 
@@ -388,12 +382,12 @@ const LandingPage = () => {
           </div>
           <div className="footer-bottom">
             <p className="copyright">
-              © 2024 Health Grow. All rights reserved. Made with ❤️ in India
+              © 2026 Health Grow. All rights reserved. Made with ❤️ in India
             </p>
           </div>
         </div>
-      </footer>
-    </div>);
+      </footer >
+    </div >);
 
 };
 
