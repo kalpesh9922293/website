@@ -1,4 +1,4 @@
-User-agent: *
+User-agent: Bingbot, Googlebot, Yandex, DuckDuckGo, Baidu
 Allow: /
 Sitemap:
 https://www.healthgrow.online/sitemap.xml
