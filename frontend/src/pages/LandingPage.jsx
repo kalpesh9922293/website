@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import {
@@ -66,6 +66,52 @@ const LandingPage = () => {
       }, 5000);
     }
   };
+
+  const aboutFeaturesRef = useRef(null);
+  const featuresRef = useRef(null);
+
+  useEffect(() => {
+    const setupAutoSlide = (ref) => {
+      const container = ref.current;
+      if (!container) return;
+
+      let scrollInterval;
+      const startScrolling = () => {
+        scrollInterval = setInterval(() => {
+          if (container.scrollLeft + container.offsetWidth >= container.scrollWidth - 10) {
+            container.scrollTo({ left: 0, behavior: 'smooth' });
+          } else {
+            const cardWidth = container.querySelector('div').offsetWidth + 20; // card + gap
+            container.scrollBy({ left: cardWidth, behavior: 'smooth' });
+          }
+        }, 3000);
+      };
+
+      const stopScrolling = () => clearInterval(scrollInterval);
+
+      startScrolling();
+      container.addEventListener('mouseenter', stopScrolling);
+      container.addEventListener('mouseleave', startScrolling);
+      container.addEventListener('touchstart', stopScrolling);
+      container.addEventListener('touchend', startScrolling);
+
+      return () => {
+        stopScrolling();
+        container.removeEventListener('mouseenter', stopScrolling);
+        container.removeEventListener('mouseleave', startScrolling);
+        container.removeEventListener('touchstart', stopScrolling);
+        container.removeEventListener('touchend', startScrolling);
+      };
+    };
+
+    const cleanupAbout = setupAutoSlide(aboutFeaturesRef);
+    const cleanupFeatures = setupAutoSlide(featuresRef);
+
+    return () => {
+      if (cleanupAbout) cleanupAbout();
+      if (cleanupFeatures) cleanupFeatures();
+    };
+  }, []);
 
   const features = [
     {
@@ -220,29 +266,31 @@ const LandingPage = () => {
             </div>
           </div>
 
-          <div className="about-features">
-            <div className="about-feature-card">
-              <div className="feature-icon-bg">
-                <Heart size={40} />
+          <div className="about-features-carousel-container">
+            <div className="about-features" ref={aboutFeaturesRef}>
+              <div className="about-feature-card">
+                <div className="feature-icon-bg">
+                  <Heart size={40} />
+                </div>
+                <h3 className="feature-title">Built with Care</h3>
+                <p className="feature-text">Every feature is designed around your needs. We listen, learn, and continuously improve to serve you better.</p>
               </div>
-              <h3 className="feature-title">Built with Care</h3>
-              <p className="feature-text">Every feature is designed around your needs. We listen, learn, and continuously improve to serve you better.</p>
-            </div>
 
-            <div className="about-feature-card">
-              <div className="feature-icon-bg">
-                <Shield size={40} />
+              <div className="about-feature-card">
+                <div className="feature-icon-bg">
+                  <Shield size={40} />
+                </div>
+                <h3 className="feature-title">Privacy First</h3>
+                <p className="feature-text">Your health data is sacred. With enterprise-grade encryption, your information stays completely private and secure.</p>
               </div>
-              <h3 className="feature-title">Privacy First</h3>
-              <p className="feature-text">Your health data is sacred. With enterprise-grade encryption, your information stays completely private and secure.</p>
-            </div>
 
-            <div className="about-feature-card">
-              <div className="feature-icon-bg">
-                <Zap size={40} />
+              <div className="about-feature-card">
+                <div className="feature-icon-bg">
+                  <Zap size={40} />
+                </div>
+                <h3 className="feature-title">AI-Powered</h3>
+                <p className="feature-text">Advanced AI analyzes your health patterns and provides personalized insights you can actually understand.</p>
               </div>
-              <h3 className="feature-title">AI-Powered</h3>
-              <p className="feature-text">Advanced AI analyzes your health patterns and provides personalized insights you can actually understand.</p>
             </div>
           </div>
         </div>
@@ -258,7 +306,7 @@ const LandingPage = () => {
             </p>
           </div>
           <div className="features-carousel-container">
-            <div className="features-grid-carousel">
+            <div className="features-grid-carousel" ref={featuresRef}>
               {features.map((feature, index) => (
                 <div key={index} className="feature-card-carousel">
                   <div className="feature-card-inner-carousel">
