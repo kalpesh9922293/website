@@ -1,0 +1,243 @@
+/* Legal Pages — Privacy Policy & Terms of Service */
+
+.legal-page {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #F0F9FF 0%, #FFFFFF 40%, #FFFFFF 100%);
+    overflow-x: hidden;
+}
+
+/* Back Link */
+.legal-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--healthcare-teal-dark);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+    margin-bottom: 0.5rem;
+}
+
+.legal-back-link:hover {
+    color: var(--healthcare-blue);
+    transform: translateX(-4px);
+}
+
+/* Hero Banner */
+.legal-hero {
+    padding: 7rem 1.5rem 3rem;
+    text-align: center;
+    background: var(--gradient-hero);
+    position: relative;
+    overflow: hidden;
+}
+
+.legal-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 25% 50%, rgba(255, 255, 255, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 75% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.legal-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.legal-hero-icon {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1rem;
+}
+
+.legal-hero h1 {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+}
+
+.legal-hero .legal-effective-date {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
+}
+
+/* Content Container */
+.legal-content {
+    max-width: 800px;
+    margin: -2rem auto 0;
+    padding: 0 1.5rem 4rem;
+    position: relative;
+    z-index: 2;
+}
+
+.legal-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem 3rem;
+    box-shadow: 0 8px 40px rgba(14, 165, 233, 0.08);
+    border: 1px solid rgba(14, 165, 233, 0.08);
+}
+
+/* Intro Text */
+.legal-intro {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-light);
+}
+
+/* Sections */
+.legal-section {
+    margin-bottom: 2.25rem;
+}
+
+.legal-section:last-child {
+    margin-bottom: 0;
+}
+
+.legal-section h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid transparent;
+    background: linear-gradient(white, white) padding-box,
+        linear-gradient(135deg, var(--healthcare-blue), var(--healthcare-teal)) border-box;
+    border-bottom: 2px solid;
+    border-image: linear-gradient(135deg, var(--healthcare-blue), var(--healthcare-teal)) 1;
+    display: inline-block;
+}
+
+.legal-section h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 1.25rem 0 0.5rem;
+}
+
+.legal-section p {
+    font-size: 0.975rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+}
+
+.legal-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0;
+}
+
+.legal-section ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.975rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+}
+
+.legal-section ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--healthcare-blue), var(--healthcare-teal));
+}
+
+/* Contact Card */
+.legal-contact-card {
+    margin-top: 1rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.06) 0%, rgba(20, 184, 166, 0.06) 100%);
+    border-radius: 14px;
+    border: 1px solid rgba(14, 165, 233, 0.12);
+}
+
+.legal-contact-card p {
+    margin-bottom: 0.35rem;
+    font-size: 0.95rem;
+}
+
+.legal-contact-card a {
+    color: var(--healthcare-blue-dark);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.legal-contact-card a:hover {
+    color: var(--healthcare-teal-dark);
+}
+
+/* Cross-link between privacy/terms */
+.legal-cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--healthcare-teal-dark);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+    transition: color 0.2s ease;
+}
+
+.legal-cross-link:hover {
+    color: var(--healthcare-blue);
+}
+
+/* Footer within legal pages */
+.legal-footer {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background: var(--text-primary);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.875rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .legal-hero {
+        padding: 6rem 1rem 2.5rem;
+    }
+
+    .legal-card {
+        padding: 2rem 1.5rem;
+        border-radius: 16px;
+    }
+
+    .legal-content {
+        padding: 0 1rem 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .legal-hero {
+        padding: 5rem 1rem 2rem;
+    }
+
+    .legal-card {
+        padding: 1.5rem 1.25rem;
+        border-radius: 14px;
+    }
+
+    .legal-section h2 {
+        font-size: 1.15rem;
+    }
+}

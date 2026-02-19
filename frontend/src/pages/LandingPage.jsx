@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import {
@@ -425,7 +426,8 @@ const LandingPage = () => {
               <a href="#about" className="footer-link">About</a>
               <a href="#features" className="footer-link">Features</a>
               <a href="#contact" className="footer-link">Contact</a>
-              <a href="#privacy" className="footer-link">Privacy Policy</a>
+              <Link to="/privacy" className="footer-link">Privacy Policy</Link>
+              <Link to="/terms" className="footer-link">Terms of Service</Link>
             </div>
           </div>
           <div className="footer-bottom">
