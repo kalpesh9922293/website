@@ -8,8 +8,10 @@ import {
   CheckCircle2
 } from 'lucide-react';
 import logo from '../assets/logo.png';
-import dashboardMockup from '../assets/dashboard_mockup.png';
-import heartRateMockup from '../assets/heart_rate_mockup.png';
+import heartRateMockup from '../assets/heartrate_mockup.png';
+import medicineMockup from '../assets/medicine_reminder_mockup.png';
+import aiMockup from '../assets/claudy_ai_mockup.png';
+import reportMockup from '../assets/report_store_mockup.png';
 import '../styles/landing.css';
 
 const LandingPage = () => {
@@ -57,10 +59,11 @@ const LandingPage = () => {
           <div className="nav-logo">
             <img src={logo} alt="Health Grow Logo" className="!rounded-[50px]" />
           </div>
-          <div className="nav-links">
+          <div className="nav-links bg-white/90 backdrop-blur-md md:bg-transparent md:backdrop-blur-none" id="nav-menu">
             <a href="#medicine" className="nav-link">Reminders</a>
             <a href="#heart-rate" className="nav-link">Heart Rate</a>
             <a href="#ai-health" className="nav-link">AI Assistant</a>
+            <a href="#report-store" className="nav-link">Reports</a>
             <button onClick={scrollToGetStarted} className="btn-nav-cta">
               Get Started
             </button>
@@ -82,11 +85,18 @@ const LandingPage = () => {
               </button>
             </div>
             <div className="hero-image-container">
-              <img
-                src={dashboardMockup}
-                alt="Health Grow Dashboard"
-                className="hero-mockup"
-              />
+              <video
+                src={`${process.env.PUBLIC_URL}/Health Grow.mp4`}
+                className="hero-video"
+                autoPlay
+                loop
+                muted
+                playsInline
+                controls
+                title="Health Grow Display Video"
+              >
+                Your browser does not support the video tag.
+              </video>
             </div>
           </div>
         </div>
@@ -108,7 +118,7 @@ const LandingPage = () => {
         <div className="container">
           <div className="feature-grid reverse">
             <div className="feature-image">
-              <img src={dashboardMockup} alt="Medicine Reminders" className="feature-mockup" />
+              <img src={medicineMockup} alt="Medicine Reminders" className="feature-mockup" />
             </div>
             <div className="feature-content">
               <h2 className="feature-title text-navy">Never miss a dose again.</h2>
@@ -142,13 +152,30 @@ const LandingPage = () => {
         <div className="container">
           <div className="feature-grid reverse">
             <div className="feature-image">
-              <img src={dashboardMockup} alt="AI Health Assistant" className="feature-mockup" />
+              <img src={aiMockup} alt="AI Health Assistant" className="feature-mockup" />
             </div>
             <div className="feature-content">
               <h2 className="feature-title text-navy">Meet your AI Health Expert.</h2>
               <p className="feature-description">
                 Upload medical reports and let our advanced AI simplify complex medical jargon into insights you can actually understand. Knowledge is the best medicine.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Feature 4: Report Store */}
+      <section id="report-store" className="feature-section">
+        <div className="container">
+          <div className="feature-grid">
+            <div className="feature-content">
+              <h2 className="feature-title text-navy">Secure Medical Records Vault.</h2>
+              <p className="feature-description">
+                Store, manage, and access all your lab reports and prescriptions in one safe place. Never lose a paper report again.
+              </p>
+            </div>
+            <div className="feature-image">
+              <img src={reportMockup} alt="Report Store" className="feature-mockup" />
             </div>
           </div>
         </div>
