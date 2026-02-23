@@ -92,7 +92,6 @@ const LandingPage = () => {
                 loop
                 muted
                 playsInline
-                controls
                 title="Health Grow Display Video"
               >
                 Your browser does not support the video tag.
