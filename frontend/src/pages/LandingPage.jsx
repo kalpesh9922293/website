@@ -1,11 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '../components/ui/button';
 import {
   User,
   Pill,
   LineChart,
-  CheckCircle2
+  CheckCircle2,
+  Bell,
+  Activity,
+  Brain,
+  FolderLock,
+  Shield,
+  Sparkles
 } from 'lucide-react';
 import logo from '../assets/logo.png';
 import heartRateMockup from '../assets/heartrate_mockup.png';
@@ -143,21 +148,58 @@ const LandingPage = () => {
     }
   ];
 
+  const platformHighlights = [
+    {
+      icon: Bell,
+      title: "Medication adherence",
+      description: "Schedules, reminders, and history so every dose stays on track."
+    },
+    {
+      icon: Activity,
+      title: "Heart rate & vitals",
+      description: "On-device checks with clear charts for day-to-day self-monitoring."
+    },
+    {
+      icon: Brain,
+      title: "Report intelligence",
+      description: "Upload labs and prescriptions; get plain-language context you can act on."
+    },
+    {
+      icon: FolderLock,
+      title: "Private health vault",
+      description: "One organized place for documents—ready when your clinician asks."
+    },
+    {
+      icon: Shield,
+      title: "Privacy-first",
+      description: "Sensitive health data handled with transparency and security in mind."
+    },
+    {
+      icon: Sparkles,
+      title: "One unified app",
+      description: "Reminders, vitals, AI explanations, and records—no tab-switching."
+    }
+  ];
+
   return (
-    <div className="landing-page">
+    <div className="landing-page" id="top">
       {/* Navigation Header */}
       <nav className="nav-header">
         <div className="nav-content">
-          <div className="nav-logo">
-            <img src={logo} alt="Health Grow Logo" className="!rounded-[50px]" />
-          </div>
+          <a href="#top" className="nav-brand" aria-label="Health Grow — top of page">
+            <div className="nav-logo">
+              <img src={logo} alt="" className="!rounded-[50px]" width={42} height={42} />
+            </div>
+            <span className="nav-wordmark">Health Grow</span>
+          </a>
           <div className="nav-links bg-white/90 backdrop-blur-md md:bg-transparent md:backdrop-blur-none" id="nav-menu">
+            <a href="#platform" className="nav-link">Product</a>
             <a href="#medicine" className="nav-link">Reminders</a>
-            <a href="#heart-rate" className="nav-link">Heart Rate</a>
-            <a href="#ai-health" className="nav-link">AI Assistant</a>
+            <a href="#heart-rate" className="nav-link">Heart rate</a>
+            <a href="#ai-health" className="nav-link">AI</a>
             <a href="#report-store" className="nav-link">Reports</a>
-            <button onClick={scrollToGetStarted} className="btn-nav-cta">
-              Get Started
+            <button type="button" onClick={scrollToGetStarted} className="btn-nav-cta">
+              Get started
             </button>
           </div>
         </div>
@@ -168,16 +210,29 @@ const LandingPage = () => {
         <div className="container">
           <div className="hero-grid">
             <div className="hero-content">
-              <h1 className="hero-title text-navy">Your Smart Health Companion</h1>
+              <div className="hero-eyebrow">
+                <Sparkles size={15} strokeWidth={2.5} aria-hidden />
+                Consumer health · India
+              </div>
+              <h1 className="hero-title text-navy">Your smart health companion</h1>
               <p className="hero-subtitle">
-                India ka apna smart healthcare management platform. Track medicines, monitor heart rate, and get AI insights—all in one place.
+                Health Grow brings medication adherence, on-device heart-rate tracking, AI-assisted report understanding, and a secure document vault into one polished Android experience—built for Indian families and clinicians who need clarity, not clutter.
               </p>
-              <a href="https://github.com/Kalpesh-Mina/website/releases/download/V3.00/Health-Grow.apk" className="btn-primary" style={{ display: 'inline-block', textDecoration: 'none', textAlign: 'center', boxSizing: 'border-box' }}>
-                Download Health Grow
+              <a
+                href="https://github.com/Kalpesh-Mina/website/releases/download/V3.00/Health-Grow.apk"
+                className="btn-primary"
+                style={{ display: 'inline-block', textDecoration: 'none', textAlign: 'center', boxSizing: 'border-box' }}
+              >
+                Download APK
               </a>
               <div className="download-sticker">
-                <span className="sticker-icon">👆</span>
-                <span className="sticker-text">Click to start download</span>
+                <span className="sticker-icon" aria-hidden>↓</span>
+                <span className="sticker-text">Direct download · Android</span>
+              </div>
+              <div className="hero-trust-row" aria-label="Trust highlights">
+                <span className="hero-trust-pill">Privacy-conscious design</span>
+                <span className="hero-trust-pill">Made for real-world adherence</span>
+                <span className="hero-trust-pill">AI grounded in your uploads</span>
               </div>
 
               {/* Download Stats Bar */}
@@ -206,17 +261,19 @@ const LandingPage = () => {
               </div>
             </div>
             <div className="hero-image-container">
-              <video
-                src={`${process.env.PUBLIC_URL}/Health Grow.mp4`}
-                className="hero-video"
-                autoPlay
-                loop
-                muted
-                playsInline
-                title="Health Grow Display Video"
-              >
-                Your browser does not support the video tag.
-              </video>
+              <div className="hero-video-wrap">
+                <video
+                  src={`${process.env.PUBLIC_URL}/Health Grow.mp4`}
+                  className="hero-video"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  title="Health Grow app preview"
+                >
+                  Your browser does not support the video tag.
+                </video>
+              </div>
             </div>
           </div>
         </div>
@@ -225,21 +282,44 @@ const LandingPage = () => {
       {/* Social Proof Banner */}
       <div className="social-proof-banner">
         <div className="container">
-          <span>Proudly Made in India ❤️</span>
-          <span>•</span>
-          <span>100% Private & Secure 🔒</span>
-          <span>•</span>
-          <span>AI-Powered Insights ⚡</span>
+          <span>Made in India</span>
+          <span className="proof-dot" aria-hidden>·</span>
+          <span>Privacy-first product principles</span>
+          <span className="proof-dot" aria-hidden>·</span>
+          <span>AI-assisted understanding of your health documents</span>
         </div>
       </div>
+
+      {/* Product overview — scannable for reviewers */}
+      <section id="platform" className="platform-section">
+        <div className="container">
+          <div className="section-header">
+            <h2 className="text-navy">What Health Grow delivers</h2>
+            <p>
+              A single consumer app that connects adherence, vitals, document intelligence, and storage—so users and care teams spend less time chasing information.
+            </p>
+          </div>
+          <div className="platform-grid">
+            {platformHighlights.map((item) => (
+              <div key={item.title} className="platform-card">
+                <div className="platform-card-icon">
+                  <item.icon size={22} strokeWidth={2.25} aria-hidden />
+                </div>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Indian User Reviews Section */}
       <section className="reviews-section">
         <div className="container">
           <div className="section-header">
-            <div className="reviews-badge">⭐ User Reviews</div>
-            <h2 className="text-navy">Loved Across India ❤️</h2>
-            <p>Real reviews from real Health Grow users</p>
+            <div className="reviews-badge">Social proof</div>
+            <h2 className="text-navy">Trusted by users across India</h2>
+            <p>Early community feedback on adherence, vitals, and report clarity.</p>
           </div>
 
           {/* Reviews Track */}
@@ -308,10 +388,16 @@ const LandingPage = () => {
               <img src={medicineMockup} alt="Medicine Reminders" className="feature-mockup" />
             </div>
             <div className="feature-content">
-              <h2 className="feature-title text-navy">Never miss a dose again.</h2>
+              <span className="feature-tag">Adherence</span>
+              <h2 className="feature-title text-navy">Never miss a dose again</h2>
               <p className="feature-description">
-                Smart, timely medicine reminders keep your health on track. Easy to set up, impossible to forget. Focus on living, we'll handle the schedule.
+                Smart reminders and schedules keep chronic-care routines on track—whether it is diabetes, hypertension, or short antibiotic courses.
               </p>
+              <ul className="feature-bullets">
+                <li><CheckCircle2 size={18} strokeWidth={2.5} aria-hidden /> Dose times with notifications tuned for daily habits</li>
+                <li><CheckCircle2 size={18} strokeWidth={2.5} aria-hidden /> Medication history for you and your care circle</li>
+                <li><CheckCircle2 size={18} strokeWidth={2.5} aria-hidden /> Minimal UI so the habit sticks, not the software</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -322,10 +408,16 @@ const LandingPage = () => {
         <div className="container">
           <div className="feature-grid">
             <div className="feature-content">
-              <h2 className="feature-title">Monitor your heart, instantly.</h2>
+              <span className="feature-tag">Vitals</span>
+              <h2 className="feature-title">Monitor your heart, instantly</h2>
               <p className="feature-description">
-                Check your heart rate anytime using our advanced wellness tracker with real-time graphs. Take control of your cardiovascular health with precision.
+                Check heart rate on compatible hardware with an experience designed for calm, repeated use—not novelty metrics.
               </p>
+              <ul className="feature-bullets">
+                <li><CheckCircle2 size={18} strokeWidth={2.5} aria-hidden /> Real-time readout with trend-friendly visuals</li>
+                <li><CheckCircle2 size={18} strokeWidth={2.5} aria-hidden /> Useful between clinic visits for self-awareness</li>
+                <li><CheckCircle2 size={18} strokeWidth={2.5} aria-hidden /> Complements—not replaces—professional diagnosis</li>
+              </ul>
             </div>
             <div className="feature-image">
               <img src={heartRateMockup} alt="Heart Rate Monitor" className="feature-mockup" />
@@ -342,10 +434,16 @@ const LandingPage = () => {
               <img src={aiMockup} alt="AI Health Assistant" className="feature-mockup" />
             </div>
             <div className="feature-content">
-              <h2 className="feature-title text-navy">Meet your AI Health Expert.</h2>
+              <span className="feature-tag">AI</span>
+              <h2 className="feature-title text-navy">Meet your AI health copilot</h2>
               <p className="feature-description">
-                Upload medical reports and let our advanced AI simplify complex medical jargon into insights you can actually understand. Knowledge is the best medicine.
+                Upload labs, prescriptions, and summaries; Health Grow helps translate dense medical language into clear takeaways you can discuss with a doctor.
               </p>
+              <ul className="feature-bullets">
+                <li><CheckCircle2 size={18} strokeWidth={2.5} aria-hidden /> Context tied to the documents you provide</li>
+                <li><CheckCircle2 size={18} strokeWidth={2.5} aria-hidden /> Explanations aimed at comprehension, not hype</li>
+                <li><CheckCircle2 size={18} strokeWidth={2.5} aria-hidden /> Designed as a second opinion on readability, not treatment</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -356,15 +454,29 @@ const LandingPage = () => {
         <div className="container">
           <div className="feature-grid">
             <div className="feature-content">
-              <h2 className="feature-title text-navy">Secure Medical Records Vault.</h2>
+              <span className="feature-tag">Records</span>
+              <h2 className="feature-title text-navy">Secure medical records vault</h2>
               <p className="feature-description">
-                Store, manage, and access all your lab reports and prescriptions in one safe place. Never lose a paper report again.
+                Store prescriptions, lab PDFs, and discharge notes in one searchable vault—so the right file is seconds away during telehealth or in-person visits.
               </p>
+              <ul className="feature-bullets">
+                <li><CheckCircle2 size={18} strokeWidth={2.5} aria-hidden /> Organized storage instead of chat attachments</li>
+                <li><CheckCircle2 size={18} strokeWidth={2.5} aria-hidden /> Quick retrieval when clinicians request prior results</li>
+                <li><CheckCircle2 size={18} strokeWidth={2.5} aria-hidden /> Built around user control of sensitive documents</li>
+              </ul>
             </div>
             <div className="feature-image">
               <img src={reportMockup} alt="Report Store" className="feature-mockup" />
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="mission-strip" aria-labelledby="mission-heading">
+        <div className="container">
+          <p id="mission-heading">
+            <strong>Mission:</strong> reduce friction between Indian patients, their medications, their vitals, and their paperwork—using thoughtful software and AI where it genuinely helps, while respecting privacy and clinical boundaries.
+          </p>
         </div>
       </section>
 
@@ -394,47 +506,41 @@ const LandingPage = () => {
       <section id="get-started-form" className="final-cta-section">
         <div className="container">
           {submitted ? (
-            <div style={{ padding: '4rem 0' }}>
-              <CheckCircle2 size={64} color="#14B8A6" style={{ margin: '0 auto 1.5rem' }} />
-              <h2 style={{ marginBottom: '1rem' }}>Thanks for Registering!</h2>
-              <p style={{ fontSize: '1.2rem', opacity: 0.9 }}>
-                Welcome to Health Grow! Check your email for next steps.
-              </p>
+            <div className="cta-success">
+              <CheckCircle2 size={56} color="#2dd4bf" style={{ margin: '0 auto 1.25rem', display: 'block' }} aria-hidden />
+              <h2>Thanks — you are on the list</h2>
+              <p>We will keep you posted on Health Grow releases and program updates.</p>
             </div>
           ) : (
-            <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-              <h2>Start Your Healthy Journey Today</h2>
-              <p style={{ fontSize: '1.15rem', opacity: 0.8, marginBottom: '2.5rem' }}>
-                Join thousands of users managing their health better with Health Grow.
+            <div className="cta-inner">
+              <h2>Stay in the loop</h2>
+              <p>
+                Leave your email for product updates, pilot partnerships, or investor decks—we read every message.
               </p>
 
-              <form onSubmit={handleEmailSubmit} style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginBottom: '3rem' }}>
+              <form onSubmit={handleEmailSubmit} className="cta-form">
                 <input
                   type="email"
-                  placeholder="Enter your email address"
+                  className="cta-email"
+                  placeholder="Work or personal email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  style={{
-                    padding: '1rem 1.5rem',
-                    borderRadius: '999px',
-                    border: 'none',
-                    width: '100%',
-                    maxWidth: '350px',
-                    fontSize: '1rem'
-                  }}
+                  autoComplete="email"
                 />
                 <button type="submit" className="btn-primary" style={{ whiteSpace: 'nowrap' }}>
-                  Get Started
+                  Notify me
                 </button>
               </form>
 
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', flexWrap: 'wrap', opacity: 0.8 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <CheckCircle2 size={20} /> Free to start
+              <div className="cta-checks">
+                <div>
+                  <CheckCircle2 size={18} strokeWidth={2.5} aria-hidden />
+                  No spam
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <CheckCircle2 size={20} /> Secure & Private
+                <div>
+                  <CheckCircle2 size={18} strokeWidth={2.5} aria-hidden />
+                  Unsubscribe anytime
                 </div>
               </div>
             </div>
@@ -447,11 +553,12 @@ const LandingPage = () => {
         <div className="container">
           <div className="footer-content">
             <div className="footer-brand">
-              <img src={logo} alt="Health Grow Logo" className="footer-logo" />
-              <p>Health is the biggest wealth</p>
-              <p style={{ marginTop: '0.5rem', color: '#0EA5E9', fontWeight: '600', letterSpacing: '0.5px', textTransform: 'uppercase', fontSize: '0.9rem' }}>A Product of KP Ventures</p>
+              <img src={logo} alt="" className="footer-logo" width={40} height={40} />
+              <p className="footer-tagline">Health Grow · consumer health for India</p>
+              <p className="footer-venture">KP Ventures</p>
             </div>
             <div className="footer-links">
+              <a href="#platform" className="footer-link">Product</a>
               <a href="#medicine" className="footer-link">Features</a>
               <Link to="/privacy" className="footer-link">Privacy Policy</Link>
               <Link to="/terms" className="footer-link">Terms of Service</Link>
