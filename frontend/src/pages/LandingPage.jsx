@@ -10,13 +10,15 @@ import {
   Brain,
   FolderLock,
   Shield,
-  Sparkles
+  Sparkles,
+  Siren
 } from 'lucide-react';
 import logo from '../assets/logo.png';
 import heartRateMockup from '../assets/heartrate_mockup.png';
 import medicineMockup from '../assets/medicine_reminder_mockup.png';
 import aiMockup from '../assets/claudy_ai_mockup.png';
 import reportMockup from '../assets/report_store_mockup.png';
+import emergencyMockup from '../assets/emergency_mode_mockup.png';
 import '../styles/landing.css';
 
 const REVIEWS = [
@@ -177,7 +179,12 @@ const LandingPage = () => {
     {
       icon: Sparkles,
       title: "One unified app",
-      description: "Reminders, vitals, AI explanations, and records—no tab-switching."
+      description: "Reminders, vitals, AI explanations, records, and safety alerts—no tab-switching."
+    },
+    {
+      icon: Siren,
+      title: "Emergency mode",
+      description: "Save up to three trusted contacts; activate to send a clear “I need help” message when it matters."
     }
   ];
 
@@ -198,6 +205,7 @@ const LandingPage = () => {
             <a href="#heart-rate" className="nav-link">Heart rate</a>
             <a href="#ai-health" className="nav-link">AI</a>
             <a href="#report-store" className="nav-link">Reports</a>
+            <a href="#emergency" className="nav-link">Emergency</a>
             <button type="button" onClick={scrollToGetStarted} className="btn-nav-cta">
               Get started
             </button>
@@ -472,10 +480,33 @@ const LandingPage = () => {
         </div>
       </section>
 
+      {/* Feature 5: Emergency mode */}
+      <section id="emergency" className="feature-section feature-section-emergency bg-soft">
+        <div className="container">
+          <div className="feature-grid reverse">
+            <div className="feature-image">
+              <img src={emergencyMockup} alt="Health Grow emergency mode screen showing trusted contacts and help alert" className="feature-mockup" />
+            </div>
+            <div className="feature-content">
+              <span className="feature-tag">Safety</span>
+              <h2 className="feature-title text-navy">Emergency mode — help one tap away</h2>
+              <p className="feature-description">
+                Add up to three trusted people—family, friends, or a caregiver. When you are in distress, turn on Emergency mode and Health Grow sends them a message that you need help, so someone who knows you can respond quickly.
+              </p>
+              <ul className="feature-bullets">
+                <li><CheckCircle2 size={18} strokeWidth={2.5} aria-hidden /> Up to three saved emergency contacts</li>
+                <li><CheckCircle2 size={18} strokeWidth={2.5} aria-hidden /> One activation to notify every contact at once</li>
+                <li><CheckCircle2 size={18} strokeWidth={2.5} aria-hidden /> Clear alert text so recipients know it is you asking for support</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="mission-strip" aria-labelledby="mission-heading">
         <div className="container">
           <p id="mission-heading">
-            <strong>Mission:</strong> reduce friction between Indian patients, their medications, their vitals, and their paperwork—using thoughtful software and AI where it genuinely helps, while respecting privacy and clinical boundaries.
+            <strong>Mission:</strong> reduce friction between Indian patients, their medications, their vitals, and their paperwork—and give people a simple way to reach trusted contacts in an emergency—using thoughtful software and AI where it genuinely helps, while respecting privacy and clinical boundaries.
           </p>
         </div>
       </section>
@@ -560,6 +591,7 @@ const LandingPage = () => {
             <div className="footer-links">
               <a href="#platform" className="footer-link">Product</a>
               <a href="#medicine" className="footer-link">Features</a>
+              <a href="#emergency" className="footer-link">Emergency</a>
               <Link to="/privacy" className="footer-link">Privacy Policy</Link>
               <Link to="/terms" className="footer-link">Terms of Service</Link>
             </div>

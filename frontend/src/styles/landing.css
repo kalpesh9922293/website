@@ -356,10 +356,17 @@ h6 {
   font-size: 1.1rem;
 }
 
+/* Seven highlight cards: last row centers on wide screens */
 .platform-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.25rem;
+}
+
+@media (min-width: 1025px) {
+  .platform-grid .platform-card:last-child:nth-child(7) {
+    grid-column: 2 / span 1;
+  }
 }
 
 @media (max-width: 640px) {
@@ -422,10 +429,10 @@ h6 {
   margin-bottom: 1rem;
 }
 
-.feature-dark .feature-tag {
-  color: #7dd3fc;
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.12);
+.feature-section-emergency .feature-tag {
+  color: #b91c1c;
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.25);
 }
 
 .feature-bullets {
