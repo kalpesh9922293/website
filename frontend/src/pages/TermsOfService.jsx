@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FileText, ArrowLeft, ArrowRight } from 'lucide-react';
+import Seo from '../components/Seo';
+import { SITE_NAME } from '../constants/seo';
 import '../styles/legal.css';
 
 const TermsOfService = () => {
@@ -10,6 +12,11 @@ const TermsOfService = () => {
 
     return (
         <div className="legal-page">
+            <Seo
+                title={`Terms of Service | ${SITE_NAME}`}
+                description="Health Grow terms of service: rules for using our Android health app, medical disclaimers, and user responsibilities."
+                path="/terms"
+            />
             {/* Hero */}
             <div className="legal-hero legal-hero-terms">
                 <div className="legal-hero-content">

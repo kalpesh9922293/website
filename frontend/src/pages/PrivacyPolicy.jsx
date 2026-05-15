@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Shield, ArrowLeft, ArrowRight } from 'lucide-react';
+import Seo from '../components/Seo';
+import { SITE_NAME } from '../constants/seo';
 import '../styles/legal.css';
 
 const PrivacyPolicy = () => {
@@ -10,6 +12,11 @@ const PrivacyPolicy = () => {
 
     return (
         <div className="legal-page">
+            <Seo
+                title={`Privacy Policy | ${SITE_NAME}`}
+                description="Health Grow privacy policy: how we collect, use, and protect your health data, medications, vitals, and uploaded reports."
+                path="/privacy"
+            />
             {/* Hero */}
             <div className="legal-hero legal-hero-privacy">
                 <div className="legal-hero-content">

@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Trash2, ArrowLeft, AlertTriangle, CheckCircle, Mail, Smartphone } from 'lucide-react';
+import Seo from '../components/Seo';
+import { SITE_NAME } from '../constants/seo';
 import '../styles/legal.css';
 
 const DeleteAccount = () => {
@@ -18,6 +20,11 @@ const DeleteAccount = () => {
 
     return (
         <div className="legal-page">
+            <Seo
+                title={`Delete Account | ${SITE_NAME}`}
+                description="How to permanently delete your Health Grow account and remove your health data from our systems."
+                path="/delete-account"
+            />
             {/* Hero */}
             <div className="legal-hero delete-account-hero">
                 <div className="legal-hero-content">

@@ -19,6 +19,8 @@ import medicineMockup from '../assets/medicine_reminder_mockup.png';
 import aiMockup from '../assets/claudy_ai_mockup.png';
 import reportMockup from '../assets/report_store_mockup.png';
 import emergencyMockup from '../assets/emergency_mode_mockup.png';
+import Seo from '../components/Seo';
+import FaqSection from '../components/FaqSection';
 import '../styles/landing.css';
 
 const REVIEWS = [
@@ -75,13 +77,38 @@ const REVIEWS = [
 const LandingPage = () => {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const reviewsRef = useRef(null);
+  const navRef = useRef(null);
 
   const scrollToGetStarted = () => {
+    setMenuOpen(false);
     document.getElementById('get-started-form')?.scrollIntoView({
       behavior: 'smooth'
     });
   };
+
+  // Close menu on outside click
+  useEffect(() => {
+    const handleOutside = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleOutside);
+    document.addEventListener('touchstart', handleOutside, { passive: true });
+    return () => {
+      document.removeEventListener('mousedown', handleOutside);
+      document.removeEventListener('touchstart', handleOutside);
+    };
+  }, []);
+
+  // Close menu on scroll
+  useEffect(() => {
+    const handleScroll = () => setMenuOpen(false);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleEmailSubmit = (e) => {
     e.preventDefault();
@@ -190,22 +217,46 @@ const LandingPage = () => {
 
   return (
     <div className="landing-page" id="top">
+      <Seo path="/" includeFaqSchema />
       {/* Navigation Header */}
-      <nav className="nav-header">
+      <nav className="nav-header" ref={navRef}>
         <div className="nav-content">
           <a href="#top" className="nav-brand" aria-label="Health Grow — top of page">
             <div className="nav-logo">
-              <img src={logo} alt="" className="!rounded-[50px]" width={42} height={42} />
+              <img src={logo} alt="Health Grow" className="!rounded-[50px]" width={38} height={38} />
             </div>
             <span className="nav-wordmark">Health Grow</span>
           </a>
-          <div className="nav-links bg-white/90 backdrop-blur-md md:bg-transparent md:backdrop-blur-none" id="nav-menu">
-            <a href="#platform" className="nav-link">Product</a>
-            <a href="#medicine" className="nav-link">Reminders</a>
-            <a href="#heart-rate" className="nav-link">Heart rate</a>
-            <a href="#ai-health" className="nav-link">AI</a>
-            <a href="#report-store" className="nav-link">Reports</a>
-            <a href="#emergency" className="nav-link">Emergency</a>
+
+          {/* Hamburger toggle — visible only on mobile via CSS */}
+          <button
+            className="nav-toggle"
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen(prev => !prev)}
+          >
+            {menuOpen ? (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            ) : (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                <line x1="3" y1="7" x2="21" y2="7" />
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="17" x2="21" y2="17" />
+              </svg>
+            )}
+          </button>
+
+          <div className={`nav-links${menuOpen ? ' open' : ''}`} id="nav-menu">
+            <a href="#platform" className="nav-link" onClick={() => setMenuOpen(false)}>Product</a>
+            <a href="#medicine" className="nav-link" onClick={() => setMenuOpen(false)}>Reminders</a>
+            <a href="#heart-rate" className="nav-link" onClick={() => setMenuOpen(false)}>Heart rate</a>
+            <a href="#ai-health" className="nav-link" onClick={() => setMenuOpen(false)}>AI</a>
+            <a href="#report-store" className="nav-link" onClick={() => setMenuOpen(false)}>Reports</a>
+            <a href="#emergency" className="nav-link" onClick={() => setMenuOpen(false)}>Emergency</a>
+            <a href="#faq" className="nav-link" onClick={() => setMenuOpen(false)}>FAQ</a>
             <button type="button" onClick={scrollToGetStarted} className="btn-nav-cta">
               Get started
             </button>
@@ -222,9 +273,11 @@ const LandingPage = () => {
                 <Sparkles size={15} strokeWidth={2.5} aria-hidden />
                 Consumer health · India
               </div>
-              <h1 className="hero-title text-navy">Your smart health companion</h1>
+              <h1 className="hero-title text-navy">
+                Health Grow — your smart health companion for India
+              </h1>
               <p className="hero-subtitle">
-                Health Grow brings medication adherence, on-device heart-rate tracking, AI-assisted report understanding, and a secure document vault into one polished Android experience—built for Indian families and clinicians who need clarity, not clutter.
+                Download the free Android health app trusted for medicine reminders, heart-rate tracking, AI lab report explanations, a secure document vault, and emergency alerts to family—built for Indian families who need clarity, not clutter.
               </p>
               <a
                 href="https://github.com/Kalpesh-Mina/website/releases/download/V3.00/Health-Grow.apk"
@@ -311,10 +364,12 @@ const LandingPage = () => {
             {platformHighlights.map((item) => (
               <div key={item.title} className="platform-card">
                 <div className="platform-card-icon">
-                  <item.icon size={22} strokeWidth={2.25} aria-hidden />
+                  <item.icon size={18} strokeWidth={2.25} aria-hidden />
                 </div>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
+                <div className="platform-card-text">
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -523,15 +578,19 @@ const LandingPage = () => {
             {howItWorks.map((step, idx) => (
               <div key={idx} className="step-card">
                 <div className="step-icon-wrapper">
-                  <step.icon size={32} strokeWidth={2.5} />
+                  <step.icon size={18} strokeWidth={2.5} />
                 </div>
-                <h3 className="step-title">{step.title}</h3>
-                <p className="step-description">{step.description}</p>
+                <div className="step-text">
+                  <h3 className="step-title">{step.title}</h3>
+                  <p className="step-description">{step.description}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      <FaqSection />
 
       {/* Final CTA Section */}
       <section id="get-started-form" className="final-cta-section">
@@ -584,7 +643,7 @@ const LandingPage = () => {
         <div className="container">
           <div className="footer-content">
             <div className="footer-brand">
-              <img src={logo} alt="" className="footer-logo" width={40} height={40} />
+              <img src={logo} alt="Health Grow app logo" className="footer-logo" width={40} height={40} />
               <p className="footer-tagline">Health Grow · consumer health for India</p>
               <p className="footer-venture">KP Ventures</p>
             </div>
@@ -592,6 +651,7 @@ const LandingPage = () => {
               <a href="#platform" className="footer-link">Product</a>
               <a href="#medicine" className="footer-link">Features</a>
               <a href="#emergency" className="footer-link">Emergency</a>
+              <Link to="/faq" className="footer-link">FAQ</Link>
               <Link to="/privacy" className="footer-link">Privacy Policy</Link>
               <Link to="/terms" className="footer-link">Terms of Service</Link>
             </div>
